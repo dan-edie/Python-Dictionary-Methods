@@ -47,20 +47,22 @@ with open(csvpath, newline='') as csvfile:
 
         #Calculating the monthly change. Note: Can't do in first pass since first month has no previous data to compare with
         if month_counter != 0:
-            monthly_change += (curr_month - prev_month)
-                
+            tot_change = curr_month - prev_month #change between current month and previous month
+            monthly_change += (tot_change)
+            
             #compare the monthly change to the max and min values and store both the value and the month when 
             #passes math test
-            if monthly_change > max_value:
-                max_value = monthly_change
+            if tot_change > max_value:
+                max_value = tot_change
                 max_month = month
 
-            if monthly_change < min_value:
-                min_value = monthly_change
+            if tot_change < min_value:
+                min_value = tot_change
                 min_month = month
 
         prev_month = curr_month
         month_counter +=1
+
 
 avg_change = monthly_change/(month_counter - 1)
 
